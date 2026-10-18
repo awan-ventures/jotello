@@ -21,7 +21,7 @@ final class GlobalHotKey {
             return noErr
         }, 1, &eventType, context, &handler)
         guard status == noErr else { return }
-        let identifier = EventHotKeyID(signature: 0x53544C4D, id: 1)
+        let identifier = EventHotKeyID(signature: 0x4A544C4F, id: 1)
         RegisterEventHotKey(UInt32(kVK_ANSI_2), UInt32(cmdKey | shiftKey), identifier,
                             GetApplicationEventTarget(), 0, &hotKey)
     }

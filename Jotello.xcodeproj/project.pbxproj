@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01E5C3086659C36FD438F4BA /* RegionSelectionWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856207402CA22E73506BFF9B /* RegionSelectionWindow.swift */; };
+		0FD36B25DDD6F883A138B464 /* CaptureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32152ECE9F77FDA9896AAEB7 /* CaptureCoordinator.swift */; };
+		1E947D276BAAF3CFCA2B4E7F /* AnnotationCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A532A502D0B1F8E9B280A79 /* AnnotationCanvas.swift */; };
+		217B8ACD11F387DEAC225393 /* CaptureGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70C7296E854CE60C3ACB2A /* CaptureGeometryTests.swift */; };
+		2853C6127B8EE454FDA47065 /* AnnotationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0E4AC4F7274750693C79C /* AnnotationRenderer.swift */; };
+		3419EA72DEB3AF48145A5DC4 /* CanvasGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523A1AB35C557EEEA6A85A6 /* CanvasGestures.swift */; };
+		3F609C02337BE3095172EB33 /* GlobalHotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AD1E8579010A60D6238640 /* GlobalHotKey.swift */; };
+		41FC182FC3F9B5C4264C6903 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AF01CA47ED13A77BE78061B4 /* PrivacyInfo.xcprivacy */; };
+		449B3365DD84C998092D61F9 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F65BF2BBD351E5843220CF /* Annotation.swift */; };
+		4E8460A95BAA9941C9242806 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2FF143B288D62A804B173 /* EditorView.swift */; };
+		78FAA4C8B90EDC0778ECE3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CEC3F19C011B928875925 /* AppDelegate.swift */; };
+		86761B0C221BDCD4639B96B6 /* AnnotationDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B79B8400977DF2AAC4E9 /* AnnotationDocument.swift */; };
+		9C9E0BBEE17DE4DDB2135A22 /* EditorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD543AD3C318715F5277774 /* EditorWindowController.swift */; };
+		B121B870D5EEC77402550A31 /* CapturedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A7B7137B197C0B65F95875 /* CapturedImage.swift */; };
+		B7CF5BE09C42D1728119C449 /* LoginItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA39D868E8BEF50514F930 /* LoginItemModel.swift */; };
+		BEA0F24808DFA650369934F1 /* EditorToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19990EFFAB497ABF20ABA5D5 /* EditorToolbar.swift */; };
+		C095A52598F12DF854A4B55F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DED26F9B30C38E5F1069B7 /* SettingsView.swift */; };
+		C3D355B124578563D6145C84 /* CanvasTextEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DD791BE26607873AA02A36 /* CanvasTextEditing.swift */; };
+		CC48A033726B818757C62C4B /* AnnotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A516B917DE12B690953863 /* AnnotationTests.swift */; };
+		D880095A711F2A131AFE9932 /* JotelloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB3DEF07C79D43CE7D12CD /* JotelloApp.swift */; };
+		DD32BB60042D3AB20564A54A /* CaptureGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2821469EF9F443EEF75AFDB /* CaptureGeometry.swift */; };
+		F267E746F01A0C1082BA9F85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5C5060B71E1250F984F3FA7 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DDC7DAAAA3B80103561E6CFE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA03903AE0FF0B485985A848 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 731B89B8119C38EC048A7801;
+			remoteInfo = Jotello;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		19990EFFAB497ABF20ABA5D5 /* EditorToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorToolbar.swift; sourceTree = "<group>"; };
+		2CB1B79B8400977DF2AAC4E9 /* AnnotationDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDocument.swift; sourceTree = "<group>"; };
+		2DE0E4AC4F7274750693C79C /* AnnotationRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationRenderer.swift; sourceTree = "<group>"; };
+		32152ECE9F77FDA9896AAEB7 /* CaptureCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureCoordinator.swift; sourceTree = "<group>"; };
+		3B1CEC3F19C011B928875925 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3FD543AD3C318715F5277774 /* EditorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorWindowController.swift; sourceTree = "<group>"; };
+		409FFA816F6682EF39AFDE69 /* JotelloTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JotelloTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F65BF2BBD351E5843220CF /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		5DA2FF143B288D62A804B173 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		62DD791BE26607873AA02A36 /* CanvasTextEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasTextEditing.swift; sourceTree = "<group>"; };
+		6A532A502D0B1F8E9B280A79 /* AnnotationCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationCanvas.swift; sourceTree = "<group>"; };
+		7DCA39D868E8BEF50514F930 /* LoginItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemModel.swift; sourceTree = "<group>"; };
+		856207402CA22E73506BFF9B /* RegionSelectionWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectionWindow.swift; sourceTree = "<group>"; };
+		85A516B917DE12B690953863 /* AnnotationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTests.swift; sourceTree = "<group>"; };
+		8F70C7296E854CE60C3ACB2A /* CaptureGeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureGeometryTests.swift; sourceTree = "<group>"; };
+		A2821469EF9F443EEF75AFDB /* CaptureGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureGeometry.swift; sourceTree = "<group>"; };
+		AF01CA47ED13A77BE78061B4 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		BFAB3DEF07C79D43CE7D12CD /* JotelloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JotelloApp.swift; sourceTree = "<group>"; };
+		C1BD3B5BC9979ACFE541915C /* Jotello.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jotello.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5AD1E8579010A60D6238640 /* GlobalHotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKey.swift; sourceTree = "<group>"; };
+		E6A7B7137B197C0B65F95875 /* CapturedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedImage.swift; sourceTree = "<group>"; };
+		E6DED26F9B30C38E5F1069B7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F523A1AB35C557EEEA6A85A6 /* CanvasGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasGestures.swift; sourceTree = "<group>"; };
+		F5C5060B71E1250F984F3FA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		3BF35828E03B2D9425E17A8E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1BD3B5BC9979ACFE541915C /* Jotello.app */,
+				409FFA816F6682EF39AFDE69 /* JotelloTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		679B29CF5028CACD8700A695 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F5C5060B71E1250F984F3FA7 /* Assets.xcassets */,
+				AF01CA47ED13A77BE78061B4 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6D6763FED5B1DC31F7270D4C /* JotelloTests */ = {
+			isa = PBXGroup;
+			children = (
+				85A516B917DE12B690953863 /* AnnotationTests.swift */,
+				8F70C7296E854CE60C3ACB2A /* CaptureGeometryTests.swift */,
+			);
+			path = JotelloTests;
+			sourceTree = "<group>";
+		};
+		6E95775C8437A422610A84A4 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				6A532A502D0B1F8E9B280A79 /* AnnotationCanvas.swift */,
+				F523A1AB35C557EEEA6A85A6 /* CanvasGestures.swift */,
+				62DD791BE26607873AA02A36 /* CanvasTextEditing.swift */,
+				19990EFFAB497ABF20ABA5D5 /* EditorToolbar.swift */,
+				5DA2FF143B288D62A804B173 /* EditorView.swift */,
+				3FD543AD3C318715F5277774 /* EditorWindowController.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		71324C403753F53F6CF76A6B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3B1CEC3F19C011B928875925 /* AppDelegate.swift */,
+				D5AD1E8579010A60D6238640 /* GlobalHotKey.swift */,
+				BFAB3DEF07C79D43CE7D12CD /* JotelloApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8D1296A574C726049FB32FA0 /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				32152ECE9F77FDA9896AAEB7 /* CaptureCoordinator.swift */,
+				E6A7B7137B197C0B65F95875 /* CapturedImage.swift */,
+				A2821469EF9F443EEF75AFDB /* CaptureGeometry.swift */,
+				856207402CA22E73506BFF9B /* RegionSelectionWindow.swift */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		B3430448903766CDC2A6F186 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6D6763FED5B1DC31F7270D4C /* JotelloTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		BFB7155BCDF4CA6D67D46609 /* Jotello */ = {
+			isa = PBXGroup;
+			children = (
+				D7411EE25376FAD67F2D5726 /* Annotations */,
+				71324C403753F53F6CF76A6B /* App */,
+				8D1296A574C726049FB32FA0 /* Capture */,
+				6E95775C8437A422610A84A4 /* Editor */,
+				D7EF8C11D215FF3C53C3D24E /* Settings */,
+			);
+			path = Jotello;
+			sourceTree = "<group>";
+		};
+		D7411EE25376FAD67F2D5726 /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				52F65BF2BBD351E5843220CF /* Annotation.swift */,
+				2CB1B79B8400977DF2AAC4E9 /* AnnotationDocument.swift */,
+				2DE0E4AC4F7274750693C79C /* AnnotationRenderer.swift */,
+			);
+			path = Annotations;
+			sourceTree = "<group>";
+		};
+		D7EF8C11D215FF3C53C3D24E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7DCA39D868E8BEF50514F930 /* LoginItemModel.swift */,
+				E6DED26F9B30C38E5F1069B7 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E371BB21CF7B7B13437FCB4B = {
+			isa = PBXGroup;
+			children = (
+				679B29CF5028CACD8700A695 /* Resources */,
+				E865DBBCAEC7817D5F2FB022 /* Sources */,
+				B3430448903766CDC2A6F186 /* Tests */,
+				3BF35828E03B2D9425E17A8E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E865DBBCAEC7817D5F2FB022 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BFB7155BCDF4CA6D67D46609 /* Jotello */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		731B89B8119C38EC048A7801 /* Jotello */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DB051D3AE5794AA7FD5AAF1 /* Build configuration list for PBXNativeTarget "Jotello" */;
+			buildPhases = (
+				49E7950BAE218017192DC582 /* Sources */,
+				EB62A0F218AB7B0E1BAE5071 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jotello;
+			packageProductDependencies = (
+			);
+			productName = Jotello;
+			productReference = C1BD3B5BC9979ACFE541915C /* Jotello.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F4F8BB27078A5AF14B5F5742 /* JotelloTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 165FD54D21C48F9DACDCA5C1 /* Build configuration list for PBXNativeTarget "JotelloTests" */;
+			buildPhases = (
+				854FAD982A431844F4D746AD /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E13EDE79E7433536C416EF52 /* PBXTargetDependency */,
+			);
+			name = JotelloTests;
+			packageProductDependencies = (
+			);
+			productName = JotelloTests;
+			productReference = 409FFA816F6682EF39AFDE69 /* JotelloTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA03903AE0FF0B485985A848 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					731B89B8119C38EC048A7801 = {
+						ProvisioningStyle = Automatic;
+					};
+					F4F8BB27078A5AF14B5F5742 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A291D7196C553E3D7646D5F7 /* Build configuration list for PBXProject "Jotello" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = E371BB21CF7B7B13437FCB4B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 3BF35828E03B2D9425E17A8E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				731B89B8119C38EC048A7801 /* Jotello */,
+				F4F8BB27078A5AF14B5F5742 /* JotelloTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB62A0F218AB7B0E1BAE5071 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F267E746F01A0C1082BA9F85 /* Assets.xcassets in Resources */,
+				41FC182FC3F9B5C4264C6903 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		49E7950BAE218017192DC582 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				449B3365DD84C998092D61F9 /* Annotation.swift in Sources */,
+				1E947D276BAAF3CFCA2B4E7F /* AnnotationCanvas.swift in Sources */,
+				86761B0C221BDCD4639B96B6 /* AnnotationDocument.swift in Sources */,
+				2853C6127B8EE454FDA47065 /* AnnotationRenderer.swift in Sources */,
+				78FAA4C8B90EDC0778ECE3C8 /* AppDelegate.swift in Sources */,
+				3419EA72DEB3AF48145A5DC4 /* CanvasGestures.swift in Sources */,
+				C3D355B124578563D6145C84 /* CanvasTextEditing.swift in Sources */,
+				0FD36B25DDD6F883A138B464 /* CaptureCoordinator.swift in Sources */,
+				DD32BB60042D3AB20564A54A /* CaptureGeometry.swift in Sources */,
+				B121B870D5EEC77402550A31 /* CapturedImage.swift in Sources */,
+				BEA0F24808DFA650369934F1 /* EditorToolbar.swift in Sources */,
+				4E8460A95BAA9941C9242806 /* EditorView.swift in Sources */,
+				9C9E0BBEE17DE4DDB2135A22 /* EditorWindowController.swift in Sources */,
+				3F609C02337BE3095172EB33 /* GlobalHotKey.swift in Sources */,
+				D880095A711F2A131AFE9932 /* JotelloApp.swift in Sources */,
+				B7CF5BE09C42D1728119C449 /* LoginItemModel.swift in Sources */,
+				01E5C3086659C36FD438F4BA /* RegionSelectionWindow.swift in Sources */,
+				C095A52598F12DF854A4B55F /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		854FAD982A431844F4D746AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC48A033726B818757C62C4B /* AnnotationTests.swift in Sources */,
+				217B8ACD11F387DEAC225393 /* CaptureGeometryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E13EDE79E7433536C416EF52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 731B89B8119C38EC048A7801 /* Jotello */;
+			targetProxy = DDC7DAAAA3B80103561E6CFE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3B158618DC99EFF5B136DBB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/Jotello.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.madebyawan.Jotello;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		7179AA47F5F73AEA66DEF8FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.madebyawan.JotelloTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jotello.app/Contents/MacOS/Jotello";
+			};
+			name = Release;
+		};
+		71FD625424F7A5073B6E23D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/Jotello.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.madebyawan.Jotello;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8CC097DBF26D99A54AC1AD4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.madebyawan.JotelloTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jotello.app/Contents/MacOS/Jotello";
+			};
+			name = Debug;
+		};
+		92098E5B0770B79D4C3039AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		D369E2BC9F347DCCF29060A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		165FD54D21C48F9DACDCA5C1 /* Build configuration list for PBXNativeTarget "JotelloTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CC097DBF26D99A54AC1AD4D /* Debug */,
+				7179AA47F5F73AEA66DEF8FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9DB051D3AE5794AA7FD5AAF1 /* Build configuration list for PBXNativeTarget "Jotello" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71FD625424F7A5073B6E23D9 /* Debug */,
+				3B158618DC99EFF5B136DBB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A291D7196C553E3D7646D5F7 /* Build configuration list for PBXProject "Jotello" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D369E2BC9F347DCCF29060A7 /* Debug */,
+				92098E5B0770B79D4C3039AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA03903AE0FF0B485985A848 /* Project object */;
+}

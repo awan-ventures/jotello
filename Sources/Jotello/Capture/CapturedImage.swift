@@ -24,9 +24,9 @@ enum CaptureError: LocalizedError {
     var recoverySuggestion: String? {
         switch self {
         case .permissionDenied:
-            return "Enable Snaplet in System Settings → Privacy & Security → Screen Recording "
-                + "(or Screen & System Audio Recording), then reopen Snaplet. "
-                + "Snaplet only takes screenshots; it does not record video or audio."
+            return "Enable Jotello in System Settings → Privacy & Security → Screen Recording "
+                + "(or Screen & System Audio Recording), then reopen Jotello. "
+                + "Jotello only takes screenshots; it does not record video or audio."
         case .noDisplay, .invalidRegion: return "Try taking the screenshot again."
         case .alreadyCapturing: return "Finish the current selection or press Escape."
         }

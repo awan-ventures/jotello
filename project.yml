@@ -1,6 +1,6 @@
-name: Snaplet
+name: Jotello
 options:
-  bundleIdPrefix: com.jo9900
+  bundleIdPrefix: com.madebyawan
   deploymentTarget:
     macOS: "14.0"
   createIntermediateGroups: true
@@ -11,59 +11,58 @@ settings:
     MARKETING_VERSION: "0.1.0"
     CURRENT_PROJECT_VERSION: "1"
     CODE_SIGN_STYLE: Automatic
-    DEVELOPMENT_TEAM: 54BTJHJKUU
     ENABLE_HARDENED_RUNTIME: YES
     SWIFT_STRICT_CONCURRENCY: complete
 targets:
-  Snaplet:
+  Jotello:
     type: application
     platform: macOS
     sources:
-      - Sources/Snaplet
+      - Sources/Jotello
       - Resources/Assets.xcassets
       - Resources/PrivacyInfo.xcprivacy
     info:
       path: Resources/Info.plist
       properties:
-        CFBundleDisplayName: Snaplet
+        CFBundleDisplayName: Jotello
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         LSApplicationCategoryType: public.app-category.utilities
         LSUIElement: true
         NSHighResolutionCapable: true
-        NSHumanReadableCopyright: Copyright © 2026 jo9900
-        NSScreenCaptureUsageDescription: Snaplet captures the area you choose so you can annotate and save a screenshot.
+        NSHumanReadableCopyright: Copyright © 2026 jo9900 and Adam Wan
+        NSScreenCaptureUsageDescription: Jotello captures the area you choose so you can annotate and save a screenshot.
     entitlements:
-      path: Resources/Snaplet.entitlements
+      path: Resources/Jotello.entitlements
       properties:
         com.apple.security.app-sandbox: true
         com.apple.security.files.user-selected.read-write: true
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.jo9900.Snaplet
+        PRODUCT_BUNDLE_IDENTIFIER: com.madebyawan.Jotello
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ENABLE_APP_SANDBOX: YES
         ENABLE_USER_SELECTED_FILES: readwrite
-  SnapletTests:
+  JotelloTests:
     type: bundle.unit-test
     platform: macOS
     sources:
-      - Tests/SnapletTests
+      - Tests/JotelloTests
     dependencies:
-      - target: Snaplet
+      - target: Jotello
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.jo9900.SnapletTests
+        PRODUCT_BUNDLE_IDENTIFIER: com.madebyawan.JotelloTests
         GENERATE_INFOPLIST_FILE: YES
-        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Snaplet.app/Contents/MacOS/Snaplet"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Jotello.app/Contents/MacOS/Jotello"
         BUNDLE_LOADER: "$(TEST_HOST)"
 schemes:
-  Snaplet:
+  Jotello:
     build:
       targets:
-        Snaplet: all
-        SnapletTests: [test]
+        Jotello: all
+        JotelloTests: [test]
     test:
       targets:
-        - SnapletTests
+        - JotelloTests
       gatherCoverageData: true

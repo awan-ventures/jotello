@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2EB4B0CF1D3602F77329D98E"
-               BuildableName = "Snaplet.app"
-               BlueprintName = "Snaplet"
-               ReferencedContainer = "container:Snaplet.xcodeproj">
+               BlueprintIdentifier = "731B89B8119C38EC048A7801"
+               BuildableName = "Jotello.app"
+               BlueprintName = "Jotello"
+               ReferencedContainer = "container:Jotello.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,10 +29,10 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7ED6A8927BD94592D19B70AE"
-               BuildableName = "SnapletTests.xctest"
-               BlueprintName = "SnapletTests"
-               ReferencedContainer = "container:Snaplet.xcodeproj">
+               BlueprintIdentifier = "F4F8BB27078A5AF14B5F5742"
+               BuildableName = "JotelloTests.xctest"
+               BlueprintName = "JotelloTests"
+               ReferencedContainer = "container:Jotello.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,10 +47,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2EB4B0CF1D3602F77329D98E"
-            BuildableName = "Snaplet.app"
-            BlueprintName = "Snaplet"
-            ReferencedContainer = "container:Snaplet.xcodeproj">
+            BlueprintIdentifier = "731B89B8119C38EC048A7801"
+            BuildableName = "Jotello.app"
+            BlueprintName = "Jotello"
+            ReferencedContainer = "container:Jotello.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -59,10 +59,10 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7ED6A8927BD94592D19B70AE"
-               BuildableName = "SnapletTests.xctest"
-               BlueprintName = "SnapletTests"
-               ReferencedContainer = "container:Snaplet.xcodeproj">
+               BlueprintIdentifier = "F4F8BB27078A5AF14B5F5742"
+               BuildableName = "JotelloTests.xctest"
+               BlueprintName = "JotelloTests"
+               ReferencedContainer = "container:Jotello.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -83,10 +83,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2EB4B0CF1D3602F77329D98E"
-            BuildableName = "Snaplet.app"
-            BlueprintName = "Snaplet"
-            ReferencedContainer = "container:Snaplet.xcodeproj">
+            BlueprintIdentifier = "731B89B8119C38EC048A7801"
+            BuildableName = "Jotello.app"
+            BlueprintName = "Jotello"
+            ReferencedContainer = "container:Jotello.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -100,10 +100,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2EB4B0CF1D3602F77329D98E"
-            BuildableName = "Snaplet.app"
-            BlueprintName = "Snaplet"
-            ReferencedContainer = "container:Snaplet.xcodeproj">
+            BlueprintIdentifier = "731B89B8119C38EC048A7801"
+            BuildableName = "Jotello.app"
+            BlueprintName = "Jotello"
+            ReferencedContainer = "container:Jotello.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

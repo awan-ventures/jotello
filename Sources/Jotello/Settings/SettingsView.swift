@@ -11,7 +11,7 @@ struct SettingsView: View {
             HStack {
                 Image(nsImage: NSApplication.shared.applicationIconImage)
                     .resizable().frame(width: 36, height: 36).accessibilityHidden(true)
-                Text("Snaplet").font(.headline)
+                Text("Jotello").font(.headline)
                 Spacer()
                 Text("⌘ ⇧ 2").font(.callout).foregroundStyle(.secondary)
             }

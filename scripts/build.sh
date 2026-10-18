@@ -6,8 +6,8 @@ cd "$(dirname "$0")/.."
 if command -v xcodegen >/dev/null 2>&1; then
   xcodegen generate
 fi
-xcodebuild -project Snaplet.xcodeproj -scheme Snaplet \
+xcodebuild -project Jotello.xcodeproj -scheme Jotello \
   -configuration Release -destination 'generic/platform=macOS' \
   -derivedDataPath build CODE_SIGNING_ALLOWED=NO \
   ARCHS='arm64 x86_64' ONLY_ACTIVE_ARCH=NO build
-printf '\nBuilt: %s/build/Build/Products/Release/Snaplet.app\n' "$PWD"
+printf '\nBuilt: %s/build/Build/Products/Release/Jotello.app\n' "$PWD"

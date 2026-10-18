@@ -1,6 +1,6 @@
 import AppKit
 import XCTest
-@testable import Snaplet
+@testable import Jotello
 
 final class AnnotationTests: XCTestCase {
     func testRetinaExportPreservesOrientationAndScalesAnnotations() throws {

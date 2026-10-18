@@ -1,7 +1,7 @@
 import AppKit
 
 @main
-enum SnapletApp {
+enum JotelloApp {
     @MainActor
     static func main() {
         let application = NSApplication.shared

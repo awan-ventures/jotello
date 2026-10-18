@@ -17,8 +17,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         installMainMenu()
         installStatusMenu()
         hotKey = GlobalHotKey { [weak self] in self?.newScreenshot() }
-        if !UserDefaults.standard.bool(forKey: "hasOpenedSnaplet") {
-            UserDefaults.standard.set(true, forKey: "hasOpenedSnaplet")
+        if !UserDefaults.standard.bool(forKey: "hasOpenedJotello") {
+            UserDefaults.standard.set(true, forKey: "hasOpenedJotello")
             showSettings()
         }
     }
@@ -87,7 +87,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
             let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 340, height: 230),
                                   styleMask: [.titled, .closable], backing: .buffered, defer: false)
-            window.title = "Snaplet"
+            window.title = "Jotello"
             window.contentView = NSHostingView(rootView: view)
             window.isReleasedWhenClosed = false
             window.center()
@@ -106,10 +106,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func installStatusMenu() {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        let image = NSImage(systemSymbolName: "viewfinder", accessibilityDescription: "Snaplet")
+        let image = NSImage(systemSymbolName: "viewfinder", accessibilityDescription: "Jotello")
         image?.isTemplate = true
         item.button?.image = image
-        item.button?.toolTip = "Snaplet — Capture & annotate"
+        item.button?.toolTip = "Jotello — Capture & annotate"
         let menu = NSMenu()
         let captureItem = menu.addItem(withTitle: "New Screenshot", action: #selector(newScreenshot), keyEquivalent: "2")
         captureItem.keyEquivalentModifierMask = [.command, .shift]
@@ -117,7 +117,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
         menu.addItem(withTitle: "Settings…", action: #selector(showSettings), keyEquivalent: ",").target = self
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Quit Snaplet", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        menu.addItem(withTitle: "Quit Jotello", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         item.menu = menu
         statusItem = item
     }
@@ -127,8 +127,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let app = NSMenu()
         app.addItem(withTitle: "Settings…", action: #selector(showSettings), keyEquivalent: ",").target = self
         app.addItem(.separator())
-        app.addItem(withTitle: "Quit Snaplet", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
-        main.addItem(withTitle: "Snaplet", action: nil, keyEquivalent: "").submenu = app
+        app.addItem(withTitle: "Quit Jotello", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        main.addItem(withTitle: "Jotello", action: nil, keyEquivalent: "").submenu = app
         let edit = NSMenu(title: "Edit")
         edit.addItem(withTitle: "Undo", action: #selector(AnnotationCanvasView.undo(_:)), keyEquivalent: "z")
         let redo = edit.addItem(withTitle: "Redo", action: #selector(AnnotationCanvasView.redo(_:)), keyEquivalent: "z")
