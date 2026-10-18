@@ -122,8 +122,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func installStatusMenu() {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        let image = NSImage(systemSymbolName: "viewfinder", accessibilityDescription: "Jotello")
+        // The app icon's viewfinder and J, as a template so it follows the menu bar's appearance.
+        let image = NSImage(named: "MenuBarIcon")
         image?.isTemplate = true
+        image?.accessibilityDescription = "Jotello"
         item.button?.image = image
         item.button?.toolTip = "Jotello — Click to capture feedback. Right-click for more."
         item.button?.target = self
