@@ -6,6 +6,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let capture = CaptureCoordinator()
     private let loginItem = LoginItemModel()
     private var statusItem: NSStatusItem?
+    private var statusMenu: NSMenu?
     private var hotKey: GlobalHotKey?
     private var settingsWindow: NSWindow?
     private var editors: [UUID: EditorWindowController] = [:]
@@ -17,6 +18,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         installMainMenu()
         installStatusMenu()
         hotKey = GlobalHotKey { [weak self] in self?.newScreenshot() }
+        #if DEBUG
+        // Opens the editor on an image file without screen capture, for UI checks.
+        if let path = ProcessInfo.processInfo.environment["JOTELLO_FIXTURE"],
+           let image = NSImage(contentsOfFile: path)?.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            openEditor(CapturedImage(image: image, pointSize: CGSize(width: image.width / 2, height: image.height / 2),
+                                     appName: "Fixture", windowTitle: "Synthetic page"))
+            return
+        }
+        #endif
         if !UserDefaults.standard.bool(forKey: "hasOpenedJotello") {
             UserDefaults.standard.set(true, forKey: "hasOpenedJotello")
             showSettings()
@@ -40,12 +50,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         editors.values.forEach { $0.annotationDocument.commitEditing?() }
-        guard editors.values.contains(where: { $0.annotationDocument.hasUnsavedChanges }) else {
+        guard editors.values.contains(where: \.hasUnsavedWork) else {
             return .terminateNow
         }
         let alert = NSAlert()
-        alert.messageText = "Quit without saving your annotations?"
-        alert.informativeText = "One or more screenshots have changes that haven’t been copied or saved."
+        alert.messageText = "Quit without sending your feedback?"
+        alert.informativeText = "One or more screenshots have changes that haven’t been sent, copied or saved."
         alert.addButton(withTitle: "Keep Editing")
         alert.addButton(withTitle: "Discard and Quit")
         return alert.runModal() == .alertSecondButtonReturn ? .terminateNow : .terminateCancel
@@ -60,7 +70,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 // Let the status menu dismiss before freezing the screen.
                 try await Task.sleep(for: .milliseconds(180))
                 if let captured = try await capture.captureRegion() {
-                    openEditor(image: captured.image, pointSize: captured.pointSize)
+                    openEditor(captured)
                 }
             } catch is CancellationError {
                 return
@@ -70,9 +80,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    private func openEditor(image: CGImage, pointSize: CGSize) {
+    private func openEditor(_ captured: CapturedImage) {
         let id = UUID()
-        let controller = EditorWindowController(image: image, pointSize: pointSize)
+        let controller = EditorWindowController(capture: captured)
         controller.onClose = { [weak self] in self?.editors.removeValue(forKey: id) }
         editors[id] = controller
         controller.showWindow(nil)
@@ -98,6 +108,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.activate(ignoringOtherApps: true)
     }
 
+    @objc func showCaptures() {
+        let root = CaptureStore.standard.root
+        try? FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        NSWorkspace.shared.open(root)
+    }
+
     private func presentError(_ error: Error) {
         NSApp.activate(ignoringOtherApps: true)
         let alert = NSAlert(error: error)
@@ -109,17 +125,34 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let image = NSImage(systemSymbolName: "viewfinder", accessibilityDescription: "Jotello")
         image?.isTemplate = true
         item.button?.image = image
-        item.button?.toolTip = "Jotello — Capture & annotate"
+        item.button?.toolTip = "Jotello — Click to capture feedback. Right-click for more."
+        item.button?.target = self
+        item.button?.action = #selector(statusItemClicked(_:))
+        item.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
         let menu = NSMenu()
-        let captureItem = menu.addItem(withTitle: "New Screenshot", action: #selector(newScreenshot), keyEquivalent: "2")
+        let captureItem = menu.addItem(withTitle: "Capture Feedback", action: #selector(newScreenshot), keyEquivalent: "2")
         captureItem.keyEquivalentModifierMask = [.command, .shift]
         captureItem.target = self
         menu.addItem(.separator())
+        menu.addItem(withTitle: "Show Captures in Finder", action: #selector(showCaptures), keyEquivalent: "").target = self
         menu.addItem(withTitle: "Settings…", action: #selector(showSettings), keyEquivalent: ",").target = self
         menu.addItem(.separator())
         menu.addItem(withTitle: "Quit Jotello", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
-        item.menu = menu
+        statusMenu = menu
         statusItem = item
+    }
+
+    /// A single click starts a capture; a right-click or Control-click opens the menu.
+    @objc private func statusItemClicked(_ sender: NSStatusBarButton) {
+        let event = NSApp.currentEvent
+        if event?.type == .rightMouseUp || event?.modifierFlags.contains(.control) == true {
+            guard let statusItem, let statusMenu else { return }
+            statusItem.menu = statusMenu
+            sender.performClick(nil)
+            statusItem.menu = nil
+        } else {
+            newScreenshot()
+        }
     }
 
     private func installMainMenu() {

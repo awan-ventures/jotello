@@ -12,7 +12,7 @@ A small, local-first macOS menu-bar utility for visual feedback. It works on any
 
 ## Status
 
-Early development. Today it is Snaplet's capture-and-annotate flow under the Jotello name. The feedback composer and destination handoffs are next; see the [plan](docs/PLAN.md).
+Early development: the local P0 MVP. Capture, annotation, the feedback composer, the agent handoff and the GitHub handoffs work. Jira and Trello, signing and releases come next; see the [plan](docs/PLAN.md). No signed build is published yet, so build it yourself.
 
 ## Build and run
 
@@ -24,22 +24,33 @@ Install Xcode 15 or later. Optionally install [XcodeGen](https://github.com/yona
 open Jotello.xcodeproj
 ```
 
-Choose the **Jotello** scheme and **My Mac**, set your own team under Signing if Xcode asks, and Run.
+Choose the **Jotello** scheme and **My Mac**, set your own team under Signing if Xcode asks, and Run. macOS ties the screen capture permission to the app's signature, so an ad hoc build may ask again after each rebuild.
+
+Debug builds can skip capture for UI work: `JOTELLO_FIXTURE=/path/to/image.png build/Build/Products/Debug/Jotello.app/Contents/MacOS/Jotello` opens the editor on that image.
 
 ## Use
 
-1. Launch Jotello and click its menu bar icon, or press **⌘⇧2**.
+1. Launch Jotello and **click its menu bar icon**, or press **⌘⇧2**. Right-click the icon for Settings, the captures folder and Quit.
 2. Allow screen capture when macOS asks (System Settings → Privacy & Security → Screen & System Audio Recording). Jotello only captures still images, and only when you ask.
 3. Drag to choose a region. **Return** captures the whole display; **Esc** cancels.
-4. Add arrows, lines, rectangles, ellipses or text. Undo and redo with ⌘Z / ⇧⌘Z.
-5. Copy the annotated image or save a PNG.
+4. Mark it up with arrows, lines, boxes, ellipses or text. Undo and redo with ⌘Z / ⇧⌘Z.
+5. In the panel on the right, choose a type (Bug, UX improvement, Polish, Other), describe what should change and optionally add the page URL. The title is generated from your description if you leave it empty.
+6. Choose where it goes and press the send button (⇧⌘↩):
+
+| Send to | What Jotello does | What you do |
+| --- | --- | --- |
+| Agent or clipboard | Copies a task prompt with the screenshot's absolute path | Paste into Claude Code, Codex or a terminal |
+| New GitHub issue | Opens `issues/new` with the title and description filled in, and copies the image | Paste (⌘V) the image into the description, review, submit |
+| GitHub PR or issue comment | Opens the conversation and copies a Markdown comment | Paste the comment, use **Copy Image** for the screenshot, submit |
+
+Jotello never posts anything itself. Each send saves `screenshot.png`, `feedback.json` and `prompt.md` to `~/Library/Application Support/Jotello/Captures/<date>-<title>/`. Jotello remembers your last destination and URL.
 
 ## Project layout
 
 ```text
-Sources/Jotello/    App, capture, annotation editor, settings
+Sources/Jotello/    App, capture, annotation editor, feedback composer and handoff, settings
 Tests/JotelloTests/ Behavior and image-output checks
-Resources/          Icon, Info.plist, entitlements, privacy manifest
+Resources/          Icon, Info.plist, privacy manifest
 scripts/            Build, test, icon generation
 docs/               Plan, privacy, verification
 project.yml         XcodeGen source of truth

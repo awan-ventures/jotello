@@ -4,6 +4,8 @@ import Foundation
 struct CapturedImage {
     let image: CGImage
     let pointSize: CGSize
+    var appName: String?
+    var windowTitle: String?
 }
 
 enum CaptureError: LocalizedError {

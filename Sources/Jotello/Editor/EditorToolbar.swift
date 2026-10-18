@@ -46,7 +46,7 @@ struct EditorToolbar: View {
                     .disabled(!document.canRedo).help("Redo (⇧⌘Z)").accessibilityLabel("Redo")
             }.buttonStyle(.borderless)
             Button(action: copy) {
-                Label(copied ? "Copied" : "Copy", systemImage: copied ? "checkmark" : "doc.on.doc")
+                Label(copied ? "Copied" : "Copy Image", systemImage: copied ? "checkmark" : "doc.on.doc")
             }
             .keyboardShortcut("c", modifiers: [.command, .shift]).help("Copy image (⇧⌘C)")
             Button(action: save) { Image(systemName: "square.and.arrow.down") }

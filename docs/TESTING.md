@@ -4,6 +4,18 @@ Run `./scripts/test.sh` for automated behavior and image-output tests, and `./sc
 
 Snaplet's own dated verification log is in this repository's history (before the Jotello rename).
 
+## P0 acceptance (manual, pending)
+
+Each check needs a real capture, which needs screen capture permission. Record the date, macOS version and result here.
+
+- [ ] Single click on the menu bar icon starts a capture; right-click and Control-click open the menu.
+- [ ] Capture a region of a localhost page in Chrome, of VS Code, and of a standard Mac app (Notes, Finder). The composer shows the right app and window title.
+- [ ] Annotate, type a short note, choose Bug, and **Copy for Agent**. Paste into Claude Code; it can open the screenshot path.
+- [ ] **New GitHub issue** opens a prefilled issue in the default browser; ⌘V pastes the annotated image into the description.
+- [ ] **GitHub PR or issue comment** opens the PR and pastes the Markdown comment; **Copy Image** then pastes the screenshot.
+- [ ] A missing or wrong URL shows an inline error and writes nothing. Cancelling a capture or closing the editor sends nothing.
+- [ ] Closing with unsent text asks before discarding.
+
 ## Manual release checks
 
 Use a signed build on macOS 14 and a current macOS version. These are checks to perform, not a claim that every configuration has been tested.

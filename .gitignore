@@ -6,3 +6,4 @@ xcuserdata/
 .codebase-memory/
 *.dSYM/
 *.xcarchive/
+*.profraw

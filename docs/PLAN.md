@@ -1,6 +1,12 @@
 # Jotello — native macOS visual feedback utility
 
-Status: forked from Snaplet and renamed (2026-10-18). P0 step 1 done except signing and a manual capture check.
+Status (2026-10-18): P0 steps 1–5 are implemented and unit-tested. Step 6, the manual acceptance pass on real apps, is pending; see [TESTING.md](TESTING.md). P1 is next.
+
+Decisions made while building P0:
+- The composer is a fixed 300-point panel on the right of the editor window, not a floating panel.
+- The App Sandbox is off (direct distribution, not the App Store), so captures are saved to `~/Library/Application Support/Jotello/Captures/` with a normal absolute path an agent can open.
+- App and window names come from the system window list under the selection's center, read before the overlay appears. There is no browser DOM or URL access.
+- A long issue description (over 6,000 characters) is left out of the URL and copied to the clipboard instead.
 
 ## One-line promise
 Select something on your screen, mark what should change, then hand an agent-ready report to your existing workflow.

@@ -39,8 +39,10 @@ final class CaptureCoordinator {
             do {
                 guard !cancelled, !Task.isCancelled else { return nil }
                 let displays = try await freezeDisplays()
+                // Read the window list before the overlay covers it.
+                let screenWindows = WindowContext.onScreenWindows()
                 guard !cancelled, !Task.isCancelled else { return nil }
-                let result = try await selectRegion(from: displays)
+                let result = try await selectRegion(from: displays, screenWindows: screenWindows)
                 guard !cancelled, !Task.isCancelled else { return nil }
                 completed = result != nil
                 return result
@@ -95,8 +97,11 @@ final class CaptureCoordinator {
         return snapshots
     }
 
-    private func selectRegion(from displays: [(frame: CGRect, image: CGImage)]) async throws -> CapturedImage? {
-        try await withCheckedThrowingContinuation { continuation in
+    private func selectRegion(from displays: [(frame: CGRect, image: CGImage)],
+                              screenWindows: [WindowInfo]) async throws -> CapturedImage? {
+        let primaryHeight = NSScreen.screens.first?.frame.height ?? 0
+        let ownProcess = ProcessInfo.processInfo.processIdentifier
+        return try await withCheckedThrowingContinuation { continuation in
             self.continuation = continuation
             for display in displays {
                 let window = RegionSelectionWindow(image: display.image, frame: display.frame) { [weak self] rect in
@@ -112,7 +117,10 @@ final class CaptureCoordinator {
                     }
                     let pointSize = CGSize(width: crop.width * display.frame.width / pixelSize.width,
                                            height: crop.height * display.frame.height / pixelSize.height)
-                    self.finish(.success(CapturedImage(image: image, pointSize: pointSize)))
+                    let source = WindowContext.window(under: desktopRect, primaryHeight: primaryHeight,
+                                                      windows: screenWindows, excluding: ownProcess)
+                    self.finish(.success(CapturedImage(image: image, pointSize: pointSize,
+                                                       appName: source?.appName, windowTitle: source?.title)))
                 }
                 windows.append(window)
             }

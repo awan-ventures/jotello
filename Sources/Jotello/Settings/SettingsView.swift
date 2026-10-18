@@ -16,7 +16,7 @@ struct SettingsView: View {
                 Text("⌘ ⇧ 2").font(.callout).foregroundStyle(.secondary)
             }
             Button(action: capture) {
-                Label("New Screenshot", systemImage: "viewfinder").frame(maxWidth: .infinity)
+                Label("Capture Feedback", systemImage: "viewfinder").frame(maxWidth: .infinity)
             }.controlSize(.large).buttonStyle(.borderedProminent)
             Divider()
             Toggle("Launch at login", isOn: Binding(get: { loginItem.isEnabled }, set: { loginItem.setEnabled($0) }))
