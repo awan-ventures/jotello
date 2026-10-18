@@ -12,7 +12,11 @@ A small, local-first macOS menu-bar utility for visual feedback. It works on any
 
 ## Status
 
-Early development: the local P0 MVP. Capture, annotation, the feedback composer, and the Claude Code, Codex, GitHub (browser or `gh`) and clipboard handoffs work. Jira and Trello, signing and releases come next; see the [plan](docs/PLAN.md). No signed build is published yet, so build it yourself.
+Early development: the local P0 MVP. Capture, annotation, the feedback composer, and the Claude Code, Codex, GitHub (browser or `gh`) and clipboard handoffs work. Jira and Trello and Developer ID signing come next; see the [plan](docs/PLAN.md).
+
+## Download
+
+Get the latest zip from [Releases](https://github.com/awan-ventures/jotello/releases/latest), unzip it and move **Jotello.app** to Applications. Builds aren't signed with a Developer ID yet, so the first launch is blocked: open **System Settings → Privacy & Security** and click **Open Anyway**. Pushing a `v*` tag builds, tests and publishes a release.
 
 ## Build and run
 
