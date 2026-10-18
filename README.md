@@ -16,7 +16,7 @@ Early development: the local P0 MVP. Capture, annotation, the feedback composer,
 
 ## Download
 
-Get the latest zip from [Releases](https://github.com/awan-ventures/jotello/releases/latest), unzip it and move **Jotello.app** to Applications. Builds aren't signed with a Developer ID yet, so the first launch is blocked: open **System Settings → Privacy & Security** and click **Open Anyway**. Pushing a `v*` tag builds, tests and publishes a release.
+Get the latest zip from [Releases](https://github.com/madebyawan/jotello/releases/latest), unzip it and move **Jotello.app** to Applications. Builds aren't signed with a Developer ID yet, so the first launch is blocked: open **System Settings → Privacy & Security** and click **Open Anyway**. Pushing a `v*` tag builds, tests and publishes a release.
 
 ## Build and run
 

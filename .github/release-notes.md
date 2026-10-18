@@ -8,4 +8,4 @@ Select something on your screen, mark what should change, and send it to Claude 
 2. Open it. This build isn't signed with an Apple Developer ID yet, so macOS blocks the first launch. Go to **System Settings → Privacy & Security**, scroll down and click **Open Anyway** next to the Jotello message.
 3. Click the menu bar icon (or press ⌘⇧2) and allow screen recording when asked, then quit and reopen Jotello.
 
-Prefer to build it yourself? See the [README](https://github.com/awan-ventures/jotello#build-and-run).
+Prefer to build it yourself? See the [README](https://github.com/madebyawan/jotello#build-and-run).
