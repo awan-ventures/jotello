@@ -30,6 +30,7 @@
 		B7CF5BE09C42D1728119C449 /* LoginItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA39D868E8BEF50514F930 /* LoginItemModel.swift */; };
 		BEA0F24808DFA650369934F1 /* EditorToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19990EFFAB497ABF20ABA5D5 /* EditorToolbar.swift */; };
 		C095A52598F12DF854A4B55F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DED26F9B30C38E5F1069B7 /* SettingsView.swift */; };
+		C14542F0AEDD0E8C08E6081E /* TerminalLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EAF8C7B3A117B2FBBB92F0 /* TerminalLauncher.swift */; };
 		C243D8869505AEF9FBF04BA6 /* WindowContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185FEE01D67C99025DA5769C /* WindowContext.swift */; };
 		C3D355B124578563D6145C84 /* CanvasTextEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DD791BE26607873AA02A36 /* CanvasTextEditing.swift */; };
 		CC48A033726B818757C62C4B /* AnnotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A516B917DE12B690953863 /* AnnotationTests.swift */; };
@@ -80,6 +81,7 @@
 		DDB62C383163E37449675C27 /* FeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModel.swift; sourceTree = "<group>"; };
 		E6A7B7137B197C0B65F95875 /* CapturedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedImage.swift; sourceTree = "<group>"; };
 		E6DED26F9B30C38E5F1069B7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E9EAF8C7B3A117B2FBBB92F0 /* TerminalLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalLauncher.swift; sourceTree = "<group>"; };
 		F1BC396FA3291C799DEAAA65 /* FeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTests.swift; sourceTree = "<group>"; };
 		F523A1AB35C557EEEA6A85A6 /* CanvasGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasGestures.swift; sourceTree = "<group>"; };
 		F5C5060B71E1250F984F3FA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				FCCB4D14E2F1673270B0A00E /* FeedbackFormatter.swift */,
 				5591A13E10B40FEF3A8FF663 /* FeedbackHandoff.swift */,
 				DDB62C383163E37449675C27 /* FeedbackModel.swift */,
+				E9EAF8C7B3A117B2FBBB92F0 /* TerminalLauncher.swift */,
 			);
 			path = Feedback;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				B7CF5BE09C42D1728119C449 /* LoginItemModel.swift in Sources */,
 				01E5C3086659C36FD438F4BA /* RegionSelectionWindow.swift in Sources */,
 				C095A52598F12DF854A4B55F /* SettingsView.swift in Sources */,
+				C14542F0AEDD0E8C08E6081E /* TerminalLauncher.swift in Sources */,
 				C243D8869505AEF9FBF04BA6 /* WindowContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

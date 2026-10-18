@@ -31,8 +31,11 @@ struct FeedbackDraft: Codable, Equatable {
     var description = ""
     var category: FeedbackCategory = .bug
     var sourceURL = ""
-    var destination: Destination = .agent
-    var targetURL = ""
+    var destination: Destination = .claudeCode
+    /// A repository or conversation URL for GitHub, or a project folder for an agent.
+    var target = ""
+    /// Post to GitHub through the user's own `gh` login instead of a prefilled browser page.
+    var useGitHubCLI = false
     var context: CaptureContext
     var screenshotPath: String?
 

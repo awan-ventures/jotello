@@ -12,7 +12,7 @@ A small, local-first macOS menu-bar utility for visual feedback. It works on any
 
 ## Status
 
-Early development: the local P0 MVP. Capture, annotation, the feedback composer, the agent handoff and the GitHub handoffs work. Jira and Trello, signing and releases come next; see the [plan](docs/PLAN.md). No signed build is published yet, so build it yourself.
+Early development: the local P0 MVP. Capture, annotation, the feedback composer, and the Claude Code, Codex, GitHub (browser or `gh`) and clipboard handoffs work. Jira and Trello, signing and releases come next; see the [plan](docs/PLAN.md). No signed build is published yet, so build it yourself.
 
 ## Build and run
 
@@ -39,11 +39,17 @@ Debug builds can skip capture for UI work: `JOTELLO_FIXTURE=/path/to/image.png b
 
 | Send to | What Jotello does | What you do |
 | --- | --- | --- |
-| Agent or clipboard | Copies a task prompt with the screenshot's absolute path | Paste into Claude Code, Codex or a terminal |
+| Claude Code | With a project folder: opens Terminal there and runs `claude` with the prompt and access to the screenshot. Without one: copies the prompt | Work with Claude Code as usual |
+| Codex | With a project folder: opens Terminal there and runs `codex` with the prompt and the screenshot attached. Without one: copies the prompt | Work with Codex as usual |
 | New GitHub issue | Opens `issues/new` with the title and description filled in, and copies the image | Paste (⌘V) the image into the description, review, submit |
 | GitHub PR or issue comment | Opens the conversation and copies a Markdown comment | Paste the comment, use **Copy Image** for the screenshot, submit |
+| Clipboard (any agent) | Copies a task prompt with the screenshot's absolute path | Paste it anywhere |
 
-Jotello never posts anything itself. Each send saves `screenshot.png`, `feedback.json` and `prompt.md` to `~/Library/Application Support/Jotello/Captures/<date>-<title>/`. Jotello remembers your last destination and URL.
+**Post with GitHub CLI (gh)** is an option for both GitHub destinations. Jotello opens Terminal and shows the post. It runs `gh issue create`, `gh pr comment` or `gh issue comment` with your own `gh` login only after you type `y`, then opens the result so you can paste the screenshot. Neither GitHub's API nor `gh` can attach an image the way the browser does.
+
+Agent and `gh` launches run in your login shell, so they find `claude`, `codex` and `gh` on your usual PATH. Each one is a `.command` file next to the capture, which you can read.
+
+Jotello never posts anything without your confirmation. Each send saves `screenshot.png`, `feedback.json` and `prompt.md` to `~/Library/Application Support/Jotello/Captures/<date>-<title>/`. Jotello remembers your last destination and the URL or folder you used with each one.
 
 ## Project layout
 

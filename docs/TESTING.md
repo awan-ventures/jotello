@@ -13,6 +13,9 @@ Each check needs a real capture, which needs screen capture permission. Record t
 - [ ] Annotate, type a short note, choose Bug, and **Copy for Agent**. Paste into Claude Code; it can open the screenshot path.
 - [ ] **New GitHub issue** opens a prefilled issue in the default browser; ⌘V pastes the annotated image into the description.
 - [ ] **GitHub PR or issue comment** opens the PR and pastes the Markdown comment; **Copy Image** then pastes the screenshot.
+- [ ] **Claude Code** with a project folder opens Terminal in that folder; Claude Code starts with the prompt and can read the screenshot. Without a folder, the prompt is copied.
+- [ ] **Codex** with a project folder starts Codex with the screenshot attached (verify `--image` with the installed Codex version).
+- [ ] **Post with GitHub CLI** shows the post, posts only after `y`, and opens the created issue or comment. Answering anything else posts nothing.
 - [ ] A missing or wrong URL shows an inline error and writes nothing. Cancelling a capture or closing the editor sends nothing.
 - [ ] Closing with unsent text asks before discarding.
 

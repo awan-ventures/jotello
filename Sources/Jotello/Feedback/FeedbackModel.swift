@@ -19,8 +19,17 @@ final class FeedbackModel {
         if let value = defaults.string(forKey: Keys.destination), let destination = Destination(rawValue: value) {
             draft.destination = destination
         }
-        draft.targetURL = defaults.string(forKey: Keys.targetURL) ?? ""
+        draft.target = defaults.string(forKey: Keys.target(draft.destination)) ?? ""
+        draft.useGitHubCLI = defaults.bool(forKey: Keys.useGitHubCLI)
         self.draft = draft
+    }
+
+    /// Switches destination and restores the URL or folder last used with it.
+    func setDestination(_ destination: Destination) {
+        guard destination != draft.destination else { return }
+        draft.destination = destination
+        draft.target = defaults.string(forKey: Keys.target(destination)) ?? ""
+        status = nil
     }
 
     /// Typed feedback that hasn't been sent or copied yet.
@@ -34,13 +43,15 @@ final class FeedbackModel {
         draft.screenshotPath = saved.screenshotPath
         sentDraft = draft
         defaults.set(draft.destination.rawValue, forKey: Keys.destination)
-        defaults.set(draft.targetURL.trimmingCharacters(in: .whitespacesAndNewlines), forKey: Keys.targetURL)
+        defaults.set(draft.target.trimmingCharacters(in: .whitespacesAndNewlines), forKey: Keys.target(draft.destination))
+        if draft.destination.isGitHub { defaults.set(draft.useGitHubCLI, forKey: Keys.useGitHubCLI) }
     }
 
     func markCopied() { sentDraft = draft }
 
     private enum Keys {
         static let destination = "lastDestination"
-        static let targetURL = "lastTargetURL"
+        static let useGitHubCLI = "useGitHubCLI"
+        static func target(_ destination: Destination) -> String { "lastTarget.\(destination.rawValue)" }
     }
 }

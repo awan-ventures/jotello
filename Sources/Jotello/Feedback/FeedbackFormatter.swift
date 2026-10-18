@@ -27,7 +27,7 @@ enum FeedbackFormatter {
         lines.append("")
         if !draft.trimmedSourceURL.isEmpty { lines.append("Page: \(draft.trimmedSourceURL)") }
         if let app = appLine(draft.context) { lines.append("Captured from: \(app)") }
-        if !draft.targetURL.isEmpty, draft.destination != .agent { lines.append("Related: \(draft.targetURL)") }
+        if draft.destination.isGitHub, !draft.target.isEmpty { lines.append("Related: \(draft.target)") }
         lines.append("Screenshot (\(size(draft.context))): \(screenshotPath)")
         lines += ["", "Arrows, boxes and text drawn on the screenshot mark what should change. "
                   + "Open the image before making changes."]

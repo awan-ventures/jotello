@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 struct ComposerView: View {
@@ -30,13 +31,23 @@ struct ComposerView: View {
                     .help("The app and window under your selection")
             }
             Divider()
-            Picker("Send to", selection: $feedback.draft.destination) {
+            Picker("Send to", selection: Binding(get: { feedback.draft.destination },
+                                                 set: { feedback.setDestination($0) })) {
                 ForEach(Destination.allCases) { Text($0.title).tag($0) }
             }
             if let label = feedback.draft.destination.targetLabel {
                 field(label) {
-                    TextField(feedback.draft.destination.targetPlaceholder, text: $feedback.draft.targetURL)
+                    HStack(spacing: 6) {
+                        TextField(feedback.draft.destination.targetPlaceholder, text: $feedback.draft.target)
+                        if feedback.draft.destination.agent != nil {
+                            Button("Choose…", action: chooseFolder)
+                        }
+                    }
                 }
+            }
+            if feedback.draft.destination.isGitHub {
+                Toggle("Post with GitHub CLI (gh)", isOn: $feedback.draft.useGitHubCLI)
+                    .help("Opens Terminal and asks before gh posts, using your own gh login")
             }
             Spacer(minLength: 0)
             if let status = feedback.status {
@@ -45,17 +56,29 @@ struct ComposerView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             Button(action: send) {
-                Text(feedback.draft.destination.actionTitle).frame(maxWidth: .infinity)
+                Text(actionTitle).frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent).controlSize(.large)
             .keyboardShortcut(.return, modifiers: [.command, .shift])
-            .help("\(feedback.draft.destination.actionTitle) (⇧⌘↩)")
+            .help("\(actionTitle) (⇧⌘↩)")
             Button(action: copyText) { Text("Copy Text").frame(maxWidth: .infinity) }
                 .help("Copy the feedback as Markdown")
         }
         .padding(16)
         .frame(width: 300)
-        .onChange(of: feedback.draft.destination) { feedback.status = nil }
+    }
+
+    private var actionTitle: String { feedback.draft.destination.actionTitle(for: feedback.draft) }
+
+    private func chooseFolder() {
+        let panel = NSOpenPanel()
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+        panel.prompt = "Choose Project"
+        panel.message = "Choose the project folder \(feedback.draft.destination.title) should open in."
+        if panel.runModal() == .OK, let url = panel.url {
+            feedback.draft.target = (url.path as NSString).abbreviatingWithTildeInPath
+        }
     }
 
     private var contextLine: String? {

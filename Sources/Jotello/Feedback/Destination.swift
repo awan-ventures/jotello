@@ -1,32 +1,52 @@
 import Foundation
 
 enum Destination: String, CaseIterable, Codable, Identifiable {
-    case agent, githubIssue, githubComment
+    // "agent" is the generic clipboard destination; the raw value predates the named agents.
+    case claudeCode, codex, githubIssue, githubComment, agent
 
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .agent: "Agent or clipboard"
+        case .claudeCode: "Claude Code"
+        case .codex: "Codex"
         case .githubIssue: "New GitHub issue"
         case .githubComment: "GitHub PR or issue comment"
+        case .agent: "Clipboard (any agent)"
         }
     }
-    var actionTitle: String {
+    var isGitHub: Bool { self == .githubIssue || self == .githubComment }
+    var agent: AgentCLI? {
         switch self {
-        case .agent: "Copy for Agent"
-        case .githubIssue: "Open Issue"
-        case .githubComment: "Open and Copy Comment"
+        case .claudeCode: .claude
+        case .codex: .codex
+        default: nil
+        }
+    }
+
+    /// The button label, which depends on the project folder and the GitHub CLI choice.
+    func actionTitle(for draft: FeedbackDraft) -> String {
+        let hasFolder = !draft.target.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        switch self {
+        case .claudeCode, .codex: return hasFolder ? "Open in \(title)" : "Copy for \(title)"
+        case .githubIssue: return draft.useGitHubCLI ? "Create with gh…" : "Open Issue"
+        case .githubComment: return draft.useGitHubCLI ? "Comment with gh…" : "Open and Copy Comment"
+        case .agent: return "Copy Prompt"
         }
     }
     var targetLabel: String? {
         switch self {
-        case .agent: nil
+        case .claudeCode, .codex: "Project folder (optional)"
         case .githubIssue: "Repository URL"
         case .githubComment: "Pull request or issue URL"
+        case .agent: nil
         }
     }
     var targetPlaceholder: String {
-        self == .githubComment ? "https://github.com/owner/repo/pull/123" : "https://github.com/owner/repo"
+        switch self {
+        case .claudeCode, .codex: "~/Code/my-app"
+        case .githubComment: "https://github.com/owner/repo/pull/123"
+        default: "https://github.com/owner/repo"
+        }
     }
 }
 
@@ -58,6 +78,7 @@ struct GitHubTarget: Equatable {
     }
 
     var repositoryURL: URL { URL(string: "https://github.com/\(owner)/\(repo)")! }
+    var fullName: String { "\(owner)/\(repo)" }
 
     var conversationURL: URL? {
         guard let kind, let number else { return nil }
@@ -66,28 +87,42 @@ struct GitHubTarget: Equatable {
 }
 
 enum DestinationError: LocalizedError, Equatable {
-    case missingRepository, missingConversation
+    case missingRepository, missingConversation, missingFolder(String)
 
     var errorDescription: String? {
         switch self {
         case .missingRepository: "Enter a GitHub repository URL, like https://github.com/owner/repo."
         case .missingConversation: "Enter a GitHub pull request or issue URL, like https://github.com/owner/repo/pull/123."
+        case .missingFolder(let path): "The project folder \(path) doesn’t exist. Choose another or leave it empty."
         }
     }
 }
 
 enum DestinationAdapter {
+    /// The agent's project folder, or nil when none is set. Throws when it doesn't exist.
+    static func projectFolder(for draft: FeedbackDraft) throws -> URL? {
+        guard draft.destination.agent != nil else { return nil }
+        let path = draft.target.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !path.isEmpty else { return nil }
+        let expanded = (path as NSString).expandingTildeInPath
+        var isDirectory: ObjCBool = false
+        guard FileManager.default.fileExists(atPath: expanded, isDirectory: &isDirectory), isDirectory.boolValue else {
+            throw DestinationError.missingFolder(path)
+        }
+        return URL(fileURLWithPath: expanded, isDirectory: true)
+    }
+
     /// GitHub documents the `title` and `body` query parameters for new issues.
     /// Long bodies are left out; the report is on the clipboard either way.
     static let maxBodyLength = 6000
 
-    /// The page to open in the user's browser, or nil when the destination is clipboard-only.
+    /// The page to open in the user's browser, or nil for the agent and clipboard destinations.
     static func url(for draft: FeedbackDraft) throws -> URL? {
         switch draft.destination {
-        case .agent:
+        case .agent, .claudeCode, .codex:
             return nil
         case .githubIssue:
-            guard let target = GitHubTarget(draft.targetURL) else { throw DestinationError.missingRepository }
+            guard let target = GitHubTarget(draft.target) else { throw DestinationError.missingRepository }
             var items = [URLQueryItem(name: "title", value: draft.resolvedTitle)]
             let body = FeedbackFormatter.issueBody(draft)
             if body.count <= maxBodyLength { items.append(URLQueryItem(name: "body", value: body)) }
@@ -99,7 +134,7 @@ enum DestinationAdapter {
                 .replacingOccurrences(of: "+", with: "%2B")
             return components.url
         case .githubComment:
-            guard let url = GitHubTarget(draft.targetURL)?.conversationURL else {
+            guard let url = GitHubTarget(draft.target)?.conversationURL else {
                 throw DestinationError.missingConversation
             }
             return url

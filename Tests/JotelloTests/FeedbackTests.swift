@@ -37,7 +37,7 @@ final class FeedbackTests: XCTestCase {
     func testIssueURLPrefillsEncodedTitleAndBody() throws {
         let url = try XCTUnwrap(DestinationAdapter.url(for: draft {
             $0.destination = .githubIssue
-            $0.targetURL = "https://github.com/a/b/tree/main"
+            $0.target = "https://github.com/a/b/tree/main"
             $0.title = "C++ & you"
             $0.description = "Line one\nLine two"
         }))
@@ -53,7 +53,7 @@ final class FeedbackTests: XCTestCase {
     func testLongIssueBodyIsLeftOutOfURL() throws {
         let url = try XCTUnwrap(DestinationAdapter.url(for: draft {
             $0.destination = .githubIssue
-            $0.targetURL = "https://github.com/a/b"
+            $0.target = "https://github.com/a/b"
             $0.description = String(repeating: "x", count: DestinationAdapter.maxBodyLength + 1)
         }))
         XCTAssertFalse(url.absoluteString.contains("body="))
@@ -61,12 +61,18 @@ final class FeedbackTests: XCTestCase {
 
     func testDestinationValidation() throws {
         XCTAssertNil(try DestinationAdapter.url(for: draft()))
+        XCTAssertNil(try DestinationAdapter.projectFolder(for: draft { $0.destination = .codex }))
+        XCTAssertEqual(try DestinationAdapter.projectFolder(for: draft { $0.target = "~" })?.path,
+                       FileManager.default.homeDirectoryForCurrentUser.path)
+        XCTAssertThrowsError(try DestinationAdapter.projectFolder(for: draft { $0.target = "/no/such/folder" })) {
+            XCTAssertEqual($0 as? DestinationError, .missingFolder("/no/such/folder"))
+        }
         XCTAssertThrowsError(try DestinationAdapter.url(for: draft { $0.destination = .githubIssue })) {
             XCTAssertEqual($0 as? DestinationError, .missingRepository)
         }
         XCTAssertThrowsError(try DestinationAdapter.url(for: draft {
             $0.destination = .githubComment
-            $0.targetURL = "https://github.com/a/b"
+            $0.target = "https://github.com/a/b"
         })) { XCTAssertEqual($0 as? DestinationError, .missingConversation) }
     }
 
@@ -111,7 +117,7 @@ final class FeedbackTests: XCTestCase {
         defer { try? FileManager.default.removeItem(at: root) }
         let handoff = try FeedbackHandoff.prepare(draft: draft {
             $0.destination = .githubIssue
-            $0.targetURL = "https://github.com/a/b"
+            $0.target = "https://github.com/a/b"
         }, png: Data([1]), store: CaptureStore(root: root))
         XCTAssertEqual(handoff.clipboard, .image)
         XCTAssertEqual(handoff.url?.path, "/a/b/issues/new")
@@ -121,18 +127,23 @@ final class FeedbackTests: XCTestCase {
     func testModelRemembersDestinationAfterSendOnly() throws {
         let defaults = try XCTUnwrap(UserDefaults(suiteName: "JotelloTests-\(UUID().uuidString)"))
         let model = FeedbackModel(context: context, defaults: defaults)
-        XCTAssertEqual(model.draft.destination, .agent)
+        XCTAssertEqual(model.draft.destination, .claudeCode)
         XCTAssertFalse(model.hasUnsentText)
-        model.draft.destination = .githubComment
-        model.draft.targetURL = " https://github.com/a/b/pull/1 "
+        model.setDestination(.githubComment)
+        model.draft.target = " https://github.com/a/b/pull/1 "
         model.draft.description = "Hi"
         XCTAssertTrue(model.hasUnsentText)
-        XCTAssertEqual(FeedbackModel(context: context, defaults: defaults).draft.destination, .agent)
+        XCTAssertEqual(FeedbackModel(context: context, defaults: defaults).draft.destination, .claudeCode)
         model.markSent(model.draft)
         XCTAssertFalse(model.hasUnsentText)
         let next = FeedbackModel(context: context, defaults: defaults)
         XCTAssertEqual(next.draft.destination, .githubComment)
-        XCTAssertEqual(next.draft.targetURL, "https://github.com/a/b/pull/1")
+        XCTAssertEqual(next.draft.target, "https://github.com/a/b/pull/1")
+        // Each destination keeps its own target.
+        next.setDestination(.codex)
+        XCTAssertEqual(next.draft.target, "")
+        next.setDestination(.githubComment)
+        XCTAssertEqual(next.draft.target, "https://github.com/a/b/pull/1")
     }
 
     func testWindowUnderSelectionUsesQuartzCoordinatesAndSkipsOwnAndOverlayWindows() {
@@ -151,6 +162,58 @@ final class FeedbackTests: XCTestCase {
         XCTAssertEqual(bottom?.title, "Bottom")
         XCTAssertNil(WindowContext.window(under: CGRect(x: 800, y: 50, width: 10, height: 10), primaryHeight: 1000,
                                           windows: windows, excluding: 1))
+    }
+
+    func testActionTitles() {
+        XCTAssertEqual(Destination.claudeCode.actionTitle(for: draft()), "Copy for Claude Code")
+        XCTAssertEqual(Destination.codex.actionTitle(for: draft { $0.target = "~/x" }), "Open in Codex")
+        XCTAssertEqual(Destination.githubIssue.actionTitle(for: draft { $0.useGitHubCLI = true }), "Create with gh…")
+    }
+
+    func testAgentHandoffWithProjectWritesExecutableLauncher() throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let project = root.appendingPathComponent("it's my app")
+        try FileManager.default.createDirectory(at: project, withIntermediateDirectories: true)
+        let handoff = try FeedbackHandoff.prepare(draft: draft {
+            $0.destination = .codex
+            $0.target = project.path
+        }, png: Data([1]), store: CaptureStore(root: root.appendingPathComponent("captures")))
+        let script = try XCTUnwrap(handoff.url)
+        XCTAssertEqual(script.lastPathComponent, "open-in-codex.command")
+        let attributes = try FileManager.default.attributesOfItem(atPath: script.path)
+        XCTAssertEqual((attributes[.posixPermissions] as? NSNumber)?.intValue, 0o700)
+        let text = try String(contentsOf: script, encoding: .utf8)
+        XCTAssertTrue(text.contains(#"cd '"# + project.path.replacingOccurrences(of: "'", with: #"'\''"#) + "'"))
+        XCTAssertTrue(text.contains("codex --image="))
+        guard case .text(let prompt) = handoff.clipboard else { return XCTFail("Expected the prompt on the clipboard") }
+        XCTAssertTrue(prompt.contains("screenshot.png"))
+    }
+
+    func testGitHubCLIHandoffWritesConfirmingScriptAndCopiesImage() throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let handoff = try FeedbackHandoff.prepare(draft: draft {
+            $0.destination = .githubComment
+            $0.target = "https://github.com/a/b/pull/9"
+            $0.useGitHubCLI = true
+            $0.title = "Don't `rm -rf` $HOME"
+        }, png: Data([1]), store: CaptureStore(root: root))
+        XCTAssertEqual(handoff.clipboard, .image)
+        let script = try XCTUnwrap(handoff.url)
+        XCTAssertEqual(script.lastPathComponent, "post-with-gh.command")
+        let text = try String(contentsOf: script, encoding: .utf8)
+        XCTAssertTrue(text.contains("gh pr comment"))
+        XCTAssertTrue(text.contains("[y/N]"))
+        XCTAssertTrue(text.contains(#"export JOTELLO_TITLE='Don'\''t `rm -rf` $HOME'"#))
+        let body = try String(contentsOf: script.deletingLastPathComponent().appendingPathComponent("github.md"),
+                              encoding: .utf8)
+        XCTAssertTrue(body.hasPrefix("### Don't"))
+    }
+
+    func testShellQuoting() {
+        XCTAssertEqual(TerminalLauncher.quoted("a b"), "'a b'")
+        XCTAssertEqual(TerminalLauncher.quoted("it's"), #"'it'\''s'"#)
     }
 
     private func decoder() -> JSONDecoder {

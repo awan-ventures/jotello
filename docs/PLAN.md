@@ -6,6 +6,7 @@ Decisions made while building P0:
 - The composer is a fixed 300-point panel on the right of the editor window, not a floating panel.
 - The App Sandbox is off (direct distribution, not the App Store), so captures are saved to `~/Library/Application Support/Jotello/Captures/` with a normal absolute path an agent can open.
 - App and window names come from the system window list under the selection's center, read before the overlay appears. There is no browser DOM or URL access.
+- Claude Code, Codex and the GitHub CLI are destinations. With a project folder, Jotello writes a `.command` file and opens it in Terminal under the user's login shell; user text reaches the shell only through single-quoted environment variables. `gh` posts wait for a typed `y`. Codex gets the image with `--image`; Claude Code gets `--add-dir` for the capture folder.
 - A long issue description (over 6,000 characters) is left out of the URL and copied to the clipboard instead.
 
 ## One-line promise
